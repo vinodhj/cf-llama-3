@@ -1,0 +1,23 @@
+{
+  "name": "cf-event",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev --name cf-event --port 8790 --inspector-port 9232",
+    "format": "prettier --write \"**/*.{ts,tsx,md,mts,json}\" --no-error-on-unmatched-pattern",
+    "start": "wrangler dev",
+    "test": "vitest",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.5.2",
+    "@cloudflare/workers-types": "^4.20240919.0",
+    "typescript": "^5.5.2",
+    "vitest": "2.0.5",
+    "wrangler": "^3.60.3"
+  },
+  "dependencies": {
+    "prettier": "^3.3.3"
+  }
+}
