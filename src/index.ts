@@ -1,6 +1,7 @@
 import { handleKVConfig } from './helpers/handle-kv-config';
-import { handleCFModels } from './helpers/handle-cf-models';
+import { addCORSHeaders, handleCFModels } from './helpers/handle-cf-models';
 import { handleAIRequest } from './helpers/handle-ai-request';
+import { handleContact } from './helpers/handle-contact';
 
 export interface Env {
   // If you set another name in wrangler.toml as the value for 'binding',
@@ -11,6 +12,7 @@ export interface Env {
   TURNSTILE_DEV_SECRET_KEY: string;
   TURNSTILE_PROD_SECRET_KEY: string;
   IS_DEV: string;
+  ENQUIRY_JEEVA_RUBBER: KVNamespace;
 }
 
 export default {
@@ -21,6 +23,8 @@ export default {
         return handleKVConfig(request, env);
       } else if (url.pathname === '/cf-models' && request.method === 'GET') {
         return handleCFModels(env);
+      } else if (url.pathname === '/contact' && (request.method === 'POST' || request.method === 'OPTIONS')) {
+        return handleContact(request, env);
       } else if (request.method === 'POST') {
         return handleAIRequest(request, env);
       }
