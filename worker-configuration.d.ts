@@ -7,5 +7,4 @@ interface Env {
   TURNSTILE_PROD_SECRET_KEY: string;
   IS_DEV: string;
   AI: Ai;
-  ENQUIRY_JEEVA_RUBBER: KVNamespace;
 }
