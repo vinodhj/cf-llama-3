@@ -4,7 +4,7 @@ import { turnstileCaptcha } from './turnstile-captcha';
 export async function handleAIRequest(request: Request, env: Env): Promise<Response> {
   const body = await request.text();
   const json = JSON.parse(body);
-  console.log('json', json);
+  //console.log('json', json);
   if (!json) {
     return new Response('No prompt provided', { status: 400 });
   }
@@ -12,7 +12,7 @@ export async function handleAIRequest(request: Request, env: Env): Promise<Respo
   if (!json.token) {
     return new Response('No token provided', { status: 400 });
   } else {
-    console.log("env.IS_DEV", env.IS_DEV);
+    //console.log("env.IS_DEV", env.IS_DEV);
     const validate_captcha = await turnstileCaptcha(json.token, env.IS_DEV === 'YES' ? env.TURNSTILE_DEV_SECRET_KEY : env.TURNSTILE_PROD_SECRET_KEY);
     if (!validate_captcha.status) {
       return new Response(`Captcha validation failed : ${validate_captcha.error}`, { status: 400 });
